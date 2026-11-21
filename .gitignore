@@ -55,3 +55,4 @@ PLAYER_LIFECYCLE.md
 *.swo
 .DS_Store
 Thumbs.db
+*.tgz

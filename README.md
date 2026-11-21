@@ -4,7 +4,7 @@
 
 在 DeepSeek Harness 中浏览和游玩 Bee.games 的小游戏，等任务时玩一局，有消息时随时回到会话。
 
-[Bee.games 官网](https://bee.games/) · [制作自己的游戏](https://studio.bee.games/) · [下载安装包](https://github.com/1parado/dsh_beeGames/releases/download/v0.3.1/dsh-beegame-0.3.1.tgz)
+[Bee.games 官网](https://bee.games/) · [制作自己的游戏](https://studio.bee.games/) · [下载安装包](#安装到-deepseek-harness)
 
 ![beeGames 在 DeepSeek Harness 中的游戏库](./assets/preview.png)
 
@@ -17,19 +17,23 @@
 
 ## 安装到 DeepSeek Harness
 
-打开 **插件 → 添加插件**，粘贴以下安装源并点击安装：
+打开 **插件 → 添加插件**，粘贴以下安装源并点击安装。两个源内容相同，国内网络优先用 Gitee；GitHub 超时或失败时换 Gitee 即可：
+
+```text
+https://gitee.com/wanxi-fou/dsh_beeGames/releases/download/v0.3.1/dsh-beegame-0.3.1.tgz
+```
 
 ```text
 https://github.com/1parado/dsh_beeGames/releases/download/v0.3.1/dsh-beegame-0.3.1.tgz
 ```
 
-也可以在支持插件管理的会话（标准或创造模式）中发送以下内容，让 Harness 完成安装：
+也可以在支持插件管理的会话（标准或创造模式）中发送以下内容，让 Harness 完成安装（`target` 换成上面任一安装源）：
 
 ```text
 请调用 plugin_manager 安装并启用 beeGames，参数如下：
 {
   "action": "install_bundle",
-  "target": "https://github.com/1parado/dsh_beeGames/releases/download/v0.3.1/dsh-beegame-0.3.1.tgz",
+  "target": "https://gitee.com/wanxi-fou/dsh_beeGames/releases/download/v0.3.1/dsh-beegame-0.3.1.tgz",
   "enabled": true
 }
 ```

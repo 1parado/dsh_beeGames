@@ -1,0 +1,9 @@
+# dsh-beegame bundle patch.
+#
+# One insert mounts the Host half; the browser half is declared by the
+# package.json `dsh.client` section and binds to the row named after the bare
+# package name (subpath rows do not carry a client half).
+- insert:
+    - id: beegame
+      name: 'dsh-beegame'
+      config: {}

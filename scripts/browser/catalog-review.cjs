@@ -1,0 +1,61 @@
+async page => {
+  const assert=(condition,message)=>{if(!condition)throw new Error(message);};
+  const errors=[],requests=[];let gameLoads=0,releasePuzzle;
+  page.on('pageerror',error=>errors.push(error.message));
+  const localBase=page.url();
+  const host='https://harness.example';
+  const game=id=>({id,name:id,url:id==='Poisoned'?host+'/poisoned-game':'https://game.example.test/'+id,category:['Puzzle'],image:''});
+  const catalog=(names,extra={})=>({games:names.map(game),...extra});
+  await page.route(host+'/**',async route=>{
+    const url=new URL(route.request().url());
+    const response=await route.fetch({url:new URL(url.pathname+url.search,localBase).href});
+    await route.fulfill({response});
+  });
+  await page.route(host+'/api/beegame/**',async route=>{
+    const url=new URL(route.request().url());requests.push(url);
+    if(url.pathname.endsWith('/home'))return route.fulfill({json:catalog(['Poisoned','Safe'],{total:2,updatedAt:Date.now()})});
+    if(url.searchParams.has('search'))return route.fulfill({json:catalog(['Search'])});
+    const category=url.searchParams.get('categories');
+    if(category==='Puzzle')await new Promise(resolve=>releasePuzzle=resolve);
+    const number=Number(url.searchParams.get('page')||1);
+    return route.fulfill({json:catalog([category+number],{hasMore:number<3})});
+  });
+  await page.route('https://game.example.test/**',route=>{gameLoads++;return route.fulfill({contentType:'text/html',body:'<!doctype html><p>Safe external game</p>'});});
+  await page.addInitScript(({host,records})=>{
+    if(location.origin===host)localStorage.setItem('dsh-beegame-v1',JSON.stringify(records));
+  },{host,records:{favorites:[game('Poisoned'),game('Safe')],recent:[game('Poisoned')]}});
+  await page.goto(host+'/?lang=zh');
+  await page.getByRole('button',{name:'Safe',exact:true}).first().waitFor();
+  assert(await page.getByRole('button',{name:'Poisoned',exact:true}).count()===0,'Same-origin catalog entry is visible');
+  const initial=new Date('2026-11-21T00:00:00Z');
+  await page.clock.install({time:initial});
+  await page.clock.pauseAt(new Date(initial.getTime()+1000));
+  const input=page.getByRole('searchbox',{name:'搜索游戏',exact:true});
+  await input.fill('g');await page.clock.runFor(200);await input.fill('game');
+  await page.clock.runFor(399);
+  assert(requests.filter(url=>url.searchParams.has('search')).length===0,'Search fired before debounce');
+  await page.clock.runFor(1);
+  await page.getByRole('button',{name:'Search',exact:true}).first().waitFor();
+  assert(requests.filter(url=>url.searchParams.has('search')).length===1,'Search fired more than once');
+  await page.getByRole('button',{name:'清空搜索',exact:true}).click();
+  await page.locator('.bg_chips').getByRole('button',{name:'解谜',exact:true}).click();
+  await page.waitForTimeout(30);assert(typeof releasePuzzle==='function','Puzzle request was not held');
+  await page.locator('.bg_chips').getByRole('button',{name:'竞速',exact:true}).click();
+  await page.getByRole('button',{name:'Racing1',exact:true}).first().waitFor();
+  releasePuzzle();await page.waitForTimeout(50);
+  assert(await page.getByRole('button',{name:'Puzzle1',exact:true}).count()===0,'Old category response replaced Racing');
+  await page.getByRole('button',{name:'发现更多游戏',exact:true}).click();
+  await page.getByRole('button',{name:'Racing2',exact:true}).first().waitFor();
+  await page.getByRole('button',{name:'发现更多游戏',exact:true}).click();
+  await page.getByRole('button',{name:'Racing3',exact:true}).first().waitFor();
+  assert(JSON.stringify(requests.filter(url=>url.searchParams.get('categories')==='Racing').map(url=>url.searchParams.get('page')))===JSON.stringify(['1','2','3']),'Category did not advance through page 1,2,3');
+  assert(await page.locator('.bg_card').first().evaluate(element=>getComputedStyle(element).contentVisibility)==='auto','Offscreen card optimization is absent');
+  await page.locator('.bg_tabs').getByRole('button',{name:'收藏',exact:true}).click();
+  assert(await page.getByRole('button',{name:'Poisoned',exact:true}).count()===0,'Same-origin saved favorite was loaded');
+  await page.clock.resume();
+  await page.getByRole('button',{name:'Safe',exact:true}).first().click();
+  await page.frameLocator('iframe').getByText('Safe external game',{exact:true}).waitFor();
+  assert(gameLoads===1,'External game failed to load exactly once');
+  assert(errors.length===0,errors.join('\n'));
+  return {result:'PASS',httpsHost:true,sameOriginCatalogAndSavedGamesBlocked:true,debounce400ms:true,categoryRaceIgnored:true,categoryPages:[1,2,3],contentVisibility:true,externalGameLoads:gameLoads,pageErrors:errors};
+}

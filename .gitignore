@@ -1,0 +1,55 @@
+# Local environment and registry credentials
+.env
+.env.*
+!.env.example
+!.env.*.example
+.npmrc
+.pypirc
+.netrc
+_netrc
+
+# Private keys, tokens, and credential exports
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+id_rsa
+id_ed25519
+secrets/
+credentials/
+secrets.json
+credentials.json
+tokens.json
+.aws/
+.ssh/
+
+# Browser sessions and captures can contain cookies or access tokens
+.auth/
+browser-profile/
+.browser-profile/
+storage-state*.json
+storageState*.json
+cookies*.json
+*.har
+*.log
+
+# Local dependencies, verification artifacts, and distribution archives
+node_modules/
+output/
+dist/
+.playwright-cli/
+coverage/
+
+# Per-user assistant configuration and local working notes
+.claude/settings.local.json
+.codex/
+notes.md
+task_plan.md
+
+# Editor and operating-system files
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

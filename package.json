@@ -1,0 +1,74 @@
+{
+  "name": "dsh-beegame",
+  "version": "0.3.0",
+  "type": "module",
+  "description": "Bee Game Panel — a side game library panel for the DeepSeek Harness Web UI, catalog powered by Bee.games",
+  "main": "./index.js",
+  "scripts": {
+    "build": "npm run i18n:check && node scripts/build-client.mjs",
+    "build:check": "node scripts/check-client.mjs",
+    "i18n:sync": "npm run build",
+    "i18n:check": "node scripts/check-i18n.mjs",
+    "seed:sync": "node scripts/sync-seed.mjs",
+    "seed:check": "node scripts/sync-seed.mjs --check",
+    "test": "node --test",
+    "test:browser:serve": "node scripts/browser/server.cjs",
+    "check": "npm run i18n:check && npm run seed:check && npm run build:check && npm test",
+    "package:check": "node scripts/check-package.mjs",
+    "prepack": "npm run build && npm run seed:check"
+  },
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "client.build.json",
+    "src",
+    "seed.js",
+    "data/seed.json",
+    "icon.svg",
+    "locale/en.json",
+    "locale/zh.json",
+    "cordis.patch.yml",
+    "README.md",
+    "PLAYER_LIFECYCLE.md",
+    "ARCHITECTURE.md",
+    "scripts",
+    "tests"
+  ],
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "games",
+    "bee-games"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-renderer",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  }
+}

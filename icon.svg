@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Bee Game Panel: a cheerful bee on a honeycomb cell. Original artwork. -->
+  <defs>
+    <linearGradient id="bg-honey" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC83D"/>
+      <stop offset="1" stop-color="#F5A623"/>
+    </linearGradient>
+  </defs>
+  <!-- honeycomb cell background -->
+  <path d="M32 4 56 18v28L32 60 8 46V18Z" fill="url(#bg-honey)"/>
+  <path d="M32 10 50.5 20.8v24.4L32 56 13.5 45.2V20.8Z" fill="#FFF3D6" opacity=".35"/>
+  <!-- wings -->
+  <ellipse cx="21" cy="26" rx="8" ry="6" fill="#FFFFFF" opacity=".9" transform="rotate(-24 21 26)"/>
+  <ellipse cx="43" cy="26" rx="8" ry="6" fill="#FFFFFF" opacity=".9" transform="rotate(24 43 26)"/>
+  <!-- body -->
+  <ellipse cx="32" cy="34" rx="12" ry="15" fill="#3A2E1F"/>
+  <!-- stripes -->
+  <path d="M21.6 29h20.8c.4 1.6.6 3.2.6 5H21c0-1.8.2-3.4.6-5Z" fill="#FFC83D"/>
+  <path d="M21 38h22c-.1 1.7-.3 3.4-.8 5H21.8c-.5-1.6-.7-3.3-.8-5Z" fill="#FFC83D"/>
+  <!-- face -->
+  <circle cx="27.5" cy="24.5" r="1.8" fill="#FFF3D6"/>
+  <circle cx="36.5" cy="24.5" r="1.8" fill="#FFF3D6"/>
+  <path d="M28 30c1.2 1.6 2.6 2.4 4 2.4s2.8-.8 4-2.4" stroke="#FFF3D6" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <!-- sting -->
+  <path d="M32 49v6" stroke="#3A2E1F" stroke-width="2.4" stroke-linecap="round"/>
+</svg>

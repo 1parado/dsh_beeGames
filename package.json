@@ -1,8 +1,13 @@
 {
   "name": "dsh-beegame",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "type": "module",
   "description": "Bee Game Panel — a side game library panel for the DeepSeek Harness Web UI, catalog powered by Bee.games",
+  "homepage": "https://github.com/1parado/dsh_beeGames#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1parado/dsh_beeGames.git"
+  },
   "main": "./index.js",
   "scripts": {
     "build": "npm run i18n:check && node scripts/build-client.mjs",
@@ -36,8 +41,7 @@
     "locale/zh.json",
     "cordis.patch.yml",
     "README.md",
-    "PLAYER_LIFECYCLE.md",
-    "ARCHITECTURE.md",
+    "assets",
     "scripts",
     "tests"
   ],

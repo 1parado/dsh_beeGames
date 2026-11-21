@@ -46,6 +46,8 @@ coverage/
 .codex/
 notes.md
 task_plan.md
+ARCHITECTURE.md
+PLAYER_LIFECYCLE.md
 
 # Editor and operating-system files
 .idea/

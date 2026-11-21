@@ -881,6 +881,11 @@ var import_react5 = require("react");
 
 // src/client/icons.js
 var import_react2 = require("react");
+
+// icon.svg
+var icon_default = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="19" fill="%23ffc735"/><g stroke="%2329271f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M26 26c-18-16-20 4-9 10m21-10c18-16 20 4 9 10" fill="%23fff8dd"/><path d="m26 20-3-5m15 5 3-5"/><ellipse cx="32" cy="36" rx="16" ry="17" fill="%23ffdb58"/><path d="M18 30h28M17 39h30M23 49h18" fill="none"/><path d="M26 25h.1m12 0h.1" stroke-width="5"/></g></svg>%0A';
+
+// src/client/icons.js
 function Icon(props) {
   const { size = 16, children, ...rest } = props;
   return (0, import_react2.createElement)("svg", {
@@ -919,24 +924,14 @@ var IconRun = (props) => (0, import_react2.createElement)(Icon, props, (0, impor
 var IconMinimize = (props) => (0, import_react2.createElement)(Icon, props, (0, import_react2.createElement)("path", { d: "M5 12h14" }));
 function BeeGlyph(props) {
   const { size = 18 } = props;
-  return (0, import_react2.createElement)(
-    "svg",
-    {
-      width: size,
-      height: size,
-      viewBox: "0 0 64 64",
-      "aria-hidden": true,
-      style: { display: "block" }
-    },
-    (0, import_react2.createElement)("path", { d: "M32 4 56 18v28L32 60 8 46V18Z", fill: "var(--dsw-alias-brand-primary)", opacity: 0.18 }),
-    (0, import_react2.createElement)("ellipse", { cx: 22, cy: 25, rx: 8, ry: 5.5, fill: "currentColor", opacity: 0.35, transform: "rotate(-24 22 25)" }),
-    (0, import_react2.createElement)("ellipse", { cx: 42, cy: 25, rx: 8, ry: 5.5, fill: "currentColor", opacity: 0.35, transform: "rotate(24 42 25)" }),
-    (0, import_react2.createElement)("ellipse", { cx: 32, cy: 34, rx: 11, ry: 14, fill: "currentColor" }),
-    (0, import_react2.createElement)("path", { d: "M22.2 30h19.6c.3 1.5.5 3 .5 4.6H21.7c0-1.6.2-3.1.5-4.6Z", fill: "var(--dsw-alias-brand-primary)", opacity: 0.9 }),
-    (0, import_react2.createElement)("path", { d: "M21.9 38.6h20.2c-.1 1.6-.4 3.2-.8 4.6H22.7c-.4-1.4-.7-3-.8-4.6Z", fill: "var(--dsw-alias-brand-primary)", opacity: 0.9 }),
-    (0, import_react2.createElement)("circle", { cx: 27.5, cy: 24, r: 1.7, fill: "var(--dsw-alias-bg-base)" }),
-    (0, import_react2.createElement)("circle", { cx: 36.5, cy: 24, r: 1.7, fill: "var(--dsw-alias-bg-base)" })
-  );
+  return (0, import_react2.createElement)("img", {
+    src: icon_default,
+    width: size,
+    height: size,
+    alt: "",
+    "aria-hidden": true,
+    style: { display: "block" }
+  });
 }
 
 // src/client/hud-toasts.js

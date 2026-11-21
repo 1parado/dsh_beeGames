@@ -12,7 +12,7 @@ async function sourceFiles(directory) {
 }
 export async function clientInputs() {
   const files = [...await sourceFiles('src/client/'), ...await sourceFiles('src/shared/'),
-    'locale/zh.json', 'locale/en.json', 'package.json', 'scripts/build-client.mjs', 'scripts/client-inputs.mjs'];
+    'locale/zh.json', 'locale/en.json', 'icon.svg', 'package.json', 'scripts/build-client.mjs', 'scripts/client-inputs.mjs'];
   return Object.fromEntries(await Promise.all(files.sort().map(async file =>
     [file, digest(await readFile(new URL(file, root)))])));
 }

@@ -12,7 +12,7 @@ const result = await build({
   format: 'cjs',
   target: 'es2020',
   external: ['react'],
-  loader: { '.css': 'text' },
+  loader: { '.css': 'text', '.svg': 'dataurl' },
   write: false,
   legalComments: 'none',
   banner: { js: `// Generated from src/client and locale/*.json. Run npm run build; do not edit.\nwindow.__ModuleLoader__.load({ id: 'dsh-beegame', factory: require => {\nconst module = { exports: {} };` },

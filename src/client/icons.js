@@ -1,4 +1,5 @@
 import { createElement as h } from 'react';
+import beeIcon from '../../icon.svg';
 
 export function Icon(props) {
   const { size = 16, children, ...rest } = props;
@@ -33,17 +34,8 @@ export const IconExpand = props => h(Icon, props, h('rect', { x: 4, y: 4, width:
 /** The panel glyph shown in the sidebar rail and expanded list. */
 export function BeeGlyph(props) {
   const { size = 18 } = props;
-  return h('svg', {
-    width: size, height: size, viewBox: '0 0 64 64', 'aria-hidden': true,
+  return h('img', {
+    src: beeIcon, width: size, height: size, alt: '', 'aria-hidden': true,
     style: { display: 'block' },
-  },
-    h('path', { d: 'M32 4 56 18v28L32 60 8 46V18Z', fill: 'var(--dsw-alias-brand-primary)', opacity: .18 }),
-    h('ellipse', { cx: 22, cy: 25, rx: 8, ry: 5.5, fill: 'currentColor', opacity: .35, transform: 'rotate(-24 22 25)' }),
-    h('ellipse', { cx: 42, cy: 25, rx: 8, ry: 5.5, fill: 'currentColor', opacity: .35, transform: 'rotate(24 42 25)' }),
-    h('ellipse', { cx: 32, cy: 34, rx: 11, ry: 14, fill: 'currentColor' }),
-    h('path', { d: 'M22.2 30h19.6c.3 1.5.5 3 .5 4.6H21.7c0-1.6.2-3.1.5-4.6Z', fill: 'var(--dsw-alias-brand-primary)', opacity: .9 }),
-    h('path', { d: 'M21.9 38.6h20.2c-.1 1.6-.4 3.2-.8 4.6H22.7c-.4-1.4-.7-3-.8-4.6Z', fill: 'var(--dsw-alias-brand-primary)', opacity: .9 }),
-    h('circle', { cx: 27.5, cy: 24, r: 1.7, fill: 'var(--dsw-alias-bg-base)' }),
-    h('circle', { cx: 36.5, cy: 24, r: 1.7, fill: 'var(--dsw-alias-bg-base)' }),
-  );
+  });
 }

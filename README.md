@@ -4,7 +4,7 @@
 
 在 DeepSeek Harness 中浏览和游玩 Bee.games 的小游戏，等任务时玩一局，有消息时随时回到会话。
 
-[Bee.games 官网](https://bee.games/) · [制作自己的游戏](https://studio.bee.games/) · [下载安装包](#安装到-deepseek-harness)
+[Bee.games 官网](https://bee.games/) · [制作自己的游戏](https://studio.bee.games/) · [下载安装包](#安装到-deepseek-harness) · 学AI，上[L站](https://linux.do/)
 
 ![beeGames 在 DeepSeek Harness 中的游戏库](./assets/preview.png)
 
